@@ -32,8 +32,18 @@ env:
 #    JDK=1.8
 #  - PLATFORM=e4.13
 #    JDK=1.8
-  - PLATFORM=e4.17
-    JDK=1.8
+#  - PLATFORM=e4.17
+#    JDK=1.8
+
+jobs:
+  include:
+  - jdk: oraclejdk11
+    env: PLATFORM=e4.17
+         JDK=11
+
+before_script:
+- ls -lA /usr/lib/jvm/
+- ls -lA /home/travis
 
 script: bash .travis.sh
 
