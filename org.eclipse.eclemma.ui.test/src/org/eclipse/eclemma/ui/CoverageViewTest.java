@@ -50,7 +50,7 @@ public class CoverageViewTest {
 
     // then
     bot.shell("Import").activate();
-    bot.text(" Please select an existing execution data file.");
+    bot.label(" Please select an existing execution data file.");
   }
 
 }
