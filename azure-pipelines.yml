@@ -1,0 +1,31 @@
+parameters:
+- name: 'Eclipse versions'
+  type: object
+  default:
+  - 3.8
+  - 4.6
+  - 4.7
+  - 4.8
+  - 4.9
+  - '4.10'
+  - 4.11
+  - 4.12
+  - 4.13
+
+jobs:
+- ${{ each eclipseVersion in parameters['Eclipse versions'] }}:
+  - job:
+    displayName: ${{ format('Eclipse {0}', eclipseVersion) }}
+    pool:
+      vmImage: ubuntu-16.04
+    steps:
+    - bash: |
+        mvn -V -B -e verify -P e${{ eclipseVersion }}
+#        sudo apt-get update
+#        sudo apt-get install metacity
+#        export DISPLAY=:99.0
+#        Xvfb :99 &
+#        sleep 5
+#        metacity --sm-disable --replace 2> metacity.err &
+#        mvn -V -B -e verify -P e${{ eclipseVersion }} -DskipUITests=false
+      displayName: Build
